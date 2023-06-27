@@ -5,7 +5,6 @@
 #include <cstring>
 #include <dirent.h>
 #include "TStopwatch.h"
-using namespace std::chrono;
 
 #include "/work/halla/sbs/adr/GMn_analysis/physics_analysis/ElasticEventsStudy/includes/read_parsescript_config.h"
 #include "/work/halla/sbs/adr/GMn_analysis/physics_analysis/ElasticEventsStudy/includes/beam_variables.h"
@@ -19,7 +18,7 @@ bool makeParsedROOTfile(TString input_ROOTfile_dirpath, std::string rootfile_nam
 int parse_gmn_rootfiles(const char* configfilename)
 {
 
-	auto total_time_start = high_resolution_clock::now();
+	auto total_time_start = std::chrono::high_resolution_clock::now();
 	TStopwatch *StopWatch = new TStopwatch();
 
 	//// Read config file and copy the input parameres to local variable. ////
@@ -78,8 +77,8 @@ int parse_gmn_rootfiles(const char* configfilename)
 	}
 		
 
-	auto total_time_end = high_resolution_clock::now();
-	auto total_time_duration = duration_cast<minutes>(total_time_end - total_time_start);
+	auto total_time_end = std::chrono::high_resolution_clock::now();
+	auto total_time_duration = std::chrono::duration_cast<std::chrono::minutes>(total_time_end - total_time_start);
 	cout << endl << "---------------------------------------------------" << endl;
 	cout << "Finished parsing rootfiles" << endl;
 	cout << "---------------------------------------------------" << endl;
